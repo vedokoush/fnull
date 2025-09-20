@@ -35,7 +35,7 @@ func main() {
 	isFile := !info.IsDir()
 	token := utils.GenerateToken(8)
 	localIP := utils.GetLocalIP()
+	publicIP := utils.GetPublicIP()
 
-	fmt.Printf("DEBUG: Port value = %d\n", *port)
-	server.StartServer(sharedPath, isFile, token, *port, localIP)
+	server.StartServer(sharedPath, isFile, token, *port, localIP, publicIP)
 }

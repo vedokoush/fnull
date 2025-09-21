@@ -27,7 +27,7 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
         Writer: os.Stdout,
         BlackChar: qrterminal.BLACK,
         WhiteChar: qrterminal.WHITE,
-        QuietZone: 1, 
+        QuietZone: 1,
     }
 
   	qrterminal.GenerateWithConfig(link, config)
@@ -42,4 +42,8 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
 	fmt.Println("Press Ctrl+C to stop the server")
 
 	http.HandleFunc("/", handler)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	if err != nil {
+		fmt.Printf("Error starting server: %v\n", err)
+	}
 }

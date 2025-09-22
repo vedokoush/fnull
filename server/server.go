@@ -23,7 +23,7 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
 	fmt.Printf("Your Token is: %s\n\n", token)
 
 	config := qrterminal.Config{
-		Level:     qrterminal.L,  
+		Level:     qrterminal.M,  
 		Writer:    os.Stdout,
 		QuietZone: 1,            
 		HalfBlocks: true,       

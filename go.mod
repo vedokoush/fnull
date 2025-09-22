@@ -3,6 +3,7 @@ module fnull
 go 1.21
 
 require (
+	github.com/datalog/qrcode-svg v0.0.0-20200314015824-80725a0be188 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/mdp/qrterminal/v3 v3.2.1 // indirect
 	github.com/nsf/termbox-go v1.1.1 // indirect

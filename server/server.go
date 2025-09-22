@@ -23,14 +23,14 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
 	fmt.Printf("Your Token is: %s\n\n", token)
 
 	config := qrterminal.Config{
-        Level: qrterminal.L,
-        Writer: os.Stdout,
-        BlackChar: qrterminal.BLACK,
-        WhiteChar: qrterminal.WHITE,
-        QuietZone: 1,
-    }
+		Level:     qrterminal.L,  
+		Writer:    os.Stdout,
+		QuietZone: 1,            
+		HalfBlocks: true,       
+	}
+	qrterminal.GenerateWithConfig(link, config)
 
-  	qrterminal.GenerateWithConfig(link, config)
+
 
 	fmt.Println("\nOn the other computer, please run:")
 	fmt.Printf("fnull --download %s\n\n", link)

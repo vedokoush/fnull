@@ -23,3 +23,4 @@ func GetPublicIP() string {
 	}
 	return strings.TrimSpace(string(out))
 }
+

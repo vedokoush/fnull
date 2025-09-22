@@ -1,40 +1,68 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"fnull/server"
 	"fnull/utils"
 )
 
+func printUsage() {
+	fmt.Println("Usage:")
+	fmt.Println("  fnull send <path/to/file_or_folder>")
+	fmt.Println("  fnull receive <fnull-link>")
+	fmt.Println()
+	fmt.Println("Examples:")
+	fmt.Println("  fnull send secret.txt")
+	fmt.Println("  fnull receive https://fnull.org/I3gan5jQ/")
+}
+
 func main() {
-	port := flag.Int("port", 8000, "Port to use (default 8000)")
-	download := flag.String("download", "", "Download from fnull link")
-	flag.Parse()
-
-	if *download != "" {
-		utils.DownloadFromLink(*download)
+	if len(os.Args) < 2 {
+		printUsage()
 		return
 	}
 
-	if flag.NArg() < 1 {
-		flag.Usage()
-		fmt.Println("Usage: go run main.go /path/to/file_or_folder [--port 9000]")
-		return
+	cmd := os.Args[1]
+
+	switch cmd {
+	case "send":
+		if len(os.Args) < 3 {
+			fmt.Println("Error: missing path to file or folder.")
+			printUsage()
+			return
+		}
+		sharedPath := os.Args[2]
+
+		info, err := os.Stat(sharedPath)
+		if err != nil {
+			fmt.Printf("Err: path %s does not exist: %v\n", sharedPath, err)
+			return
+		}
+
+		isFile := !info.IsDir()
+		token := utils.GenerateToken(8)
+		localIP := utils.GetLocalIP()
+		publicIP := utils.GetPublicIP()
+
+		server.StartServer(sharedPath, isFile, token, 8000, localIP, publicIP)
+
+	case "receive":
+		if len(os.Args) < 3 {
+			fmt.Println("Err: missing link")
+			printUsage()
+			return
+		}
+		link := os.Args[2]
+		err := utils.DownloadFromLink(link)
+		if err != nil {
+			fmt.Printf("Download failed: %v\n", err)
+			return
+		}
+		fmt.Println("Download completed successfully.")
+
+	default:
+		fmt.Printf("Unknown command: %s\n\n", cmd)
+		printUsage()
 	}
-
-	sharedPath := flag.Arg(0)
-	info, err := os.Stat(sharedPath)
-	if err != nil {
-		fmt.Printf("Error: path %s does not exist\n", sharedPath)
-		return
-	}
-
-	isFile := !info.IsDir()
-	token := utils.GenerateToken(8)
-	localIP := utils.GetLocalIP()
-	publicIP := utils.GetPublicIP()
-
-	server.StartServer(sharedPath, isFile, token, *port, localIP, publicIP)
 }

@@ -6,6 +6,7 @@ import (
 	"strings"
 	"os"
 	"github.com/mdp/qrterminal/v3"
+	
 )
 
 var (
@@ -16,6 +17,8 @@ var (
 
 func StartServer(path string, file bool, tkn string, port int, localIP string, publicIP string) {
 	sharedPath, isFile, token = path, file, tkn
+
+	startTunnel()
 
 	link := fmt.Sprintf("http://%s:%d/%s/", localIP, port, token)
 
@@ -45,3 +48,5 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
 		fmt.Printf("Error starting server: %v\n", err)
 	}
 }
+
+

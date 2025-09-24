@@ -12,6 +12,10 @@ import (
 )
 
 func DownloadFromLink(link string) error {
+	if !strings.HasPrefix(link, "http://") && !strings.HasPrefix(link, "https://") {
+		link = fmt.Sprintf("https://fnull.shouko.site/%s", link)
+	}
+
 	parsedURL, err := url.Parse(link)
 	if err != nil {
 		return fmt.Errorf("invalid link: %w", err)
@@ -36,7 +40,6 @@ func DownloadFromLink(link string) error {
 		downloadURL = link
 	}
 
-
 	resp, err := http.Get(downloadURL)
 	if err != nil {
 		return fmt.Errorf("failed to download from %s: %w", downloadURL, err)
@@ -59,11 +62,11 @@ func DownloadFromLink(link string) error {
 			return fmt.Errorf("failed to copy response body to temp file: %w", err)
 		}
 		tmpFile.Close()
+
 		err = Unzip(tmpFile.Name(), "./")
 		if err != nil {
 			return fmt.Errorf("failed to unzip file: %w", err)
 		}
-
 
 	} else {
 		filename := "downloaded_file"

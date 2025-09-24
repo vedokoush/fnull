@@ -14,7 +14,7 @@ func printUsage() {
 	fmt.Println()
 	fmt.Println("Examples:")
 	fmt.Println("  fnull send secret.txt")
-	fmt.Println("  fnull receive https://fnull.org/I3gan5jQ/")
+	fmt.Println("  fnull receive I3gan5jQ`")
 }
 
 func main() {

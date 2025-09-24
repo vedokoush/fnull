@@ -20,15 +20,15 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
 
 	startTunnel()
 
-	link := fmt.Sprintf("http://%s:%d/%s/", localIP, port, token)
+	link := fmt.Sprintf("https://fnull.shouko.site/%s/", token)
 
 	fmt.Println(strings.Repeat("=", 50))
 	fmt.Printf("Your Token (session id) is: %s\n\n", token)
 
 	config := qrterminal.Config{
-		Level:     qrterminal.M,
-		Writer:    os.Stdout,
-		QuietZone: 1,
+		Level:      qrterminal.M,
+		Writer:     os.Stdout,
+		QuietZone:  1,
 		HalfBlocks: true,
 	}
 	qrterminal.GenerateWithConfig(link, config)
@@ -36,7 +36,7 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
 	fmt.Println()
 	fmt.Println("How to receive:")
 	fmt.Println("  On the other computer run:")
-	fmt.Printf("    fnull receive %s\n\n", link)
+	fmt.Printf("    fnull receive %s\n\n", token)
 	fmt.Println("  Or you can download directly from the link in a browser:")
 	fmt.Printf("    %s\n\n", link)
 	fmt.Println(strings.Repeat("=", 50))
@@ -48,5 +48,3 @@ func StartServer(path string, file bool, tkn string, port int, localIP string, p
 		fmt.Printf("Error starting server: %v\n", err)
 	}
 }
-
-

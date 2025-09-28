@@ -18,6 +18,7 @@ var (
 func StartServer(path string, file bool, tkn string, port int, localIP string, publicIP string) {
 	sharedPath, isFile, token = path, file, tkn
 
+	relayRegisterURL = "wss://fnull.shouko.site/register"
 	startTunnel()
 
 	link := fmt.Sprintf("https://fnull.shouko.site/%s/", token)

@@ -4,6 +4,7 @@ go 1.22
 
 require (
 	github.com/datalog/qrcode-svg v0.0.0-20200314015824-80725a0be188 // indirect
+	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/mdp/qrterminal/v3 v3.2.1 // indirect
 	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db // indirect

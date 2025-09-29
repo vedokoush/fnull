@@ -32,6 +32,7 @@ func main() {
 			printUsage()
 			return
 		}
+
 		sharedPath := os.Args[2]
 
 		info, err := os.Stat(sharedPath)

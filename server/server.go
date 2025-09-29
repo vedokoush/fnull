@@ -3,10 +3,10 @@ package server
 import (
 	"fmt"
 	"net/http"
-	"strings"
 	"os"
+	"strings"
+
 	"github.com/mdp/qrterminal/v3"
-	
 )
 
 var (

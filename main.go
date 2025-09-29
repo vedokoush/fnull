@@ -25,8 +25,7 @@ func main() {
 
 	cmd := os.Args[1]
 
-	switch cmd {
-	case "send":
+	if cmd == "send" {
 		if len(os.Args) < 3 {
 			fmt.Println("missing path to file or folder.")
 			printUsage()
@@ -48,7 +47,7 @@ func main() {
 
 		server.StartServer(sharedPath, isFile, token, 8000, localIP, publicIP)
 
-	case "receive":
+	} else if cmd == "receive" {
 		if len(os.Args) < 3 {
 			fmt.Println("Err: missing link")
 			printUsage()
@@ -60,10 +59,10 @@ func main() {
 			fmt.Printf("Download failed: %v\n", err)
 			return
 		}
-		fmt.Println("Download completed successfully.")
+		fmt.Println("Download completed successfully")
 
-	default:
-		fmt.Printf("Unknown command: %s\n\n", cmd)
+	} else {
+		fmt.Printf("IDK command: %s\n\n", cmd)
 		printUsage()
 	}
 }

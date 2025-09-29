@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"fnull/server"
 	"fnull/utils"
+	"os"
 )
 
 func printUsage() {
@@ -28,7 +28,7 @@ func main() {
 	switch cmd {
 	case "send":
 		if len(os.Args) < 3 {
-			fmt.Println("Error: missing path to file or folder.")
+			fmt.Println("missing path to file or folder.")
 			printUsage()
 			return
 		}

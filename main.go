@@ -36,7 +36,7 @@ func main() {
 
 		info, err := os.Stat(sharedPath)
 		if err != nil {
-			fmt.Printf("Err: path %s does not exist: %v\n", sharedPath, err)
+			fmt.Printf("path %s does not exist: %v\n", sharedPath, err)
 			return
 		}
 
